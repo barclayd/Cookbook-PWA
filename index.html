@@ -18,7 +18,7 @@
     <nav class="z-depth-0">
         <div class="nav-wrapper container">
             <a href="/">Cookbook <span>Manager</span></a>
-            <span class="left grey-text right text-darken-4">
+            <span class="left grey-text right text">
                 <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
             </span>
         </div>
@@ -86,6 +86,28 @@
             <i class="material-icons">add</i>
         </a>
     </div>
+
+    <!-- add recipe side nav -->
+    <div id="side-form" class="sidenav side-form">
+        <form class="add-recipe container section">
+            <h6>New Recipe</h6>
+            <div class="divider"></div>
+            <div class="input-field">
+                <input placeholder="e.g. Sweetcorn soup" id="title" type="text" class="validate">
+                <label for="title">Recipe Title</label>
+            </div>
+            <div class="input-field">
+                <input placeholder="e.g. Sweetcorn, vegetable stock, olive oil" id="ingredients" type="text"
+                    class="validate">
+                <label for="ingredients">Ingredients</label>
+            </div>
+            <div class="input-field center">
+                <button class="btn-small">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="./js/ui.js"></script>
 
 </body>
 
