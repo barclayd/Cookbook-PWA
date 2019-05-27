@@ -11,19 +11,18 @@ nav {
 
 nav a {
     text-transform: uppercase;
-    color: var(--title);
+    color: var(--title) !important;
+    font-size: 1.3em !important;
+    font-weight: 700 !important;
 }
 
-nav a span {
-    font-weight: bold;
-}
 
 nav .sidenav-trigger {
     margin: 0;
 }
 
 /* recipe styles */
-.recipes {
+nav a .recipes {
     margin-top: 20px;
 }
 
