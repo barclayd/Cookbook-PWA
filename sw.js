@@ -1,4 +1,6 @@
-const staticCacheName = "site-static-v4";
+const staticCacheName = "site-static-v3";
+const dynamicCacheName = "site-dynamic-v3";
+
 const assets = [
   "/",
   "/js/app.js",
@@ -8,8 +10,6 @@ const assets = [
   "/css/style.css",
   "/img/dish.png",
   "/index.html",
-  "/pages/about.html",
-  "/pages/contact.html",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2"
 ];
@@ -39,5 +39,16 @@ self.addEventListener("activate", async event => {
 // fetch event
 self.addEventListener("fetch", event => {
   const { request } = event;
-  return event.respondWith(caches.match(request)) || fetch(request);
+  event.respondWith(
+    caches.match(request).then(cacheRes => {
+      return (
+        cacheRes ||
+        fetch(request).then(async fetchRes => {
+          const cache = await caches.open(dynamicCacheName);
+          cache.put(request.url, fetchRes.clone());
+          return fetchRes;
+        })
+      );
+    })
+  );
 });
