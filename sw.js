@@ -11,7 +11,8 @@ const assets = [
   "/img/dish.png",
   "/index.html",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2"
+  "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+  "/pages/fallback.html"
 ];
 
 // listen to service worker install event
@@ -31,7 +32,7 @@ self.addEventListener("activate", async event => {
   event.waitUntil(
     (keys = await caches.keys()),
     await keys
-      .filter(key => key !== staticCacheName)
+      .filter(key => key !== staticCacheName && key !== dynamicCacheName)
       .map(key => caches.delete(key))
   );
 });
@@ -40,15 +41,22 @@ self.addEventListener("activate", async event => {
 self.addEventListener("fetch", event => {
   const { request } = event;
   event.respondWith(
-    caches.match(request).then(cacheRes => {
-      return (
-        cacheRes ||
-        fetch(request).then(async fetchRes => {
-          const cache = await caches.open(dynamicCacheName);
-          cache.put(request.url, fetchRes.clone());
-          return fetchRes;
-        })
-      );
-    })
+    caches
+      .match(request)
+      .then(cacheRes => {
+        return (
+          cacheRes ||
+          fetch(request).then(async fetchRes => {
+            const cache = await caches.open(dynamicCacheName);
+            cache.put(request.url, fetchRes.clone());
+            return fetchRes;
+          })
+        );
+      })
+      .catch(() => {
+        if (request.url.indexOf(".html") > -1) {
+          return caches.match("/pages/fallback.html");
+        }
+      })
   );
 });
