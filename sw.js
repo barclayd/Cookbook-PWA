@@ -15,12 +15,22 @@ const assets = [
   "/pages/fallback.html"
 ];
 
+// cache size limiter
+const limitCacheSize = (name, size) => {
+  caches.open(name).then(cache => {
+    cache.keys().then(keys => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(name, size));
+      }
+    });
+  });
+};
+
 // listen to service worker install event
 self.addEventListener("install", async event => {
   // cache shell of pwa
   event.waitUntil(
     (cache = await caches.open(staticCacheName)),
-    console.log("caching shell assets"),
     cache.addAll(assets)
   );
 });
@@ -49,6 +59,8 @@ self.addEventListener("fetch", event => {
           fetch(request).then(async fetchRes => {
             const cache = await caches.open(dynamicCacheName);
             cache.put(request.url, fetchRes.clone());
+            // check cached items size
+            limitCacheSize(dynamicCacheName, 2);
             return fetchRes;
           })
         );
