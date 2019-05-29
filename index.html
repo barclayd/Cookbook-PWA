@@ -113,9 +113,30 @@
             </div>
         </form>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqznrHjn-JP1sSX91K53GOiIUpiKAxy-Y",
+            authDomain: "clear-emitter-234416.firebaseapp.com",
+            databaseURL: "https://clear-emitter-234416.firebaseio.com",
+            projectId: "clear-emitter-234416",
+            storageBucket: "clear-emitter-234416.appspot.com",
+            messagingSenderId: "455719057190",
+            appId: "1:455719057190:web:1974877d4cbe9253"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+
     <script src="./js/app.js"></script>
     <script src="./js/ui.js"></script>
-
+    <script src="./js/db.js"></script>
 </body>
 
 </html>
