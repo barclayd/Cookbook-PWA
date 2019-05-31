@@ -50,25 +50,25 @@ self.addEventListener("activate", async event => {
 // fetch event
 self.addEventListener("fetch", event => {
   const { request } = event;
-  event.respondWith(
-    caches
-      .match(request)
-      .then(cacheRes => {
-        return (
-          cacheRes ||
-          fetch(request).then(async fetchRes => {
-            const cache = await caches.open(dynamicCacheName);
-            cache.put(request.url, fetchRes.clone());
-            // check cached items size
-            limitCacheSize(dynamicCacheName, 10);
-            return fetchRes;
-          })
-        );
-      })
-      .catch(() => {
-        if (request.url.indexOf(".html") > -1) {
-          return caches.match("/pages/fallback.html");
-        }
-      })
-  );
+  // event.respondWith(
+  //   caches
+  //     .match(request)
+  //     .then(cacheRes => {
+  //       return (
+  //         cacheRes ||
+  //         fetch(request).then(async fetchRes => {
+  //           const cache = await caches.open(dynamicCacheName);
+  //           cache.put(request.url, fetchRes.clone());
+  //           // check cached items size
+  //           limitCacheSize(dynamicCacheName, 10);
+  //           return fetchRes;
+  //         })
+  //       );
+  //     })
+  //     .catch(() => {
+  //       if (request.url.indexOf(".html") > -1) {
+  //         return caches.match("/pages/fallback.html");
+  //       }
+  //     })
+  // );
 });
