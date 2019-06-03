@@ -1,15 +1,15 @@
-const recipes = document.querySelector(".recipes");
+const recipes = document.querySelector('.recipes');
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // nav menu
-  const menus = document.querySelector(".side-menu");
+  const menus = document.querySelector('.side-menu');
   M.Sidenav.init(menus, {
-    edge: "left"
+    edge: 'left',
   });
   // recipe form
-  const forms = document.querySelector(".side-form");
+  const forms = document.querySelector('.side-form');
   M.Sidenav.init(forms, {
-    edge: "right"
+    edge: 'right',
   });
 });
 
