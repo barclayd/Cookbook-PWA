@@ -1,3 +1,13 @@
+// offline funcitonality
+db.enablePersistence().catch(err => {
+  console.log(err);
+  if (err.code === 'failed.precondition') {
+    console.log('persistent data failure');
+  } else if (err.code === 'unimplemented') {
+    console.log('persistence is not available');
+  }
+});
+
 const collectionName = 'recipes';
 // real time listener
 db.collection(collectionName).onSnapshot(snapshot => {
@@ -18,7 +28,7 @@ db.collection(collectionName).onSnapshot(snapshot => {
 const form = document.querySelector('form');
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  console.log(form);
+
   const recipe = {
     title: form.title.value,
     ingredients: form.ingredients.value,
