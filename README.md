@@ -15,7 +15,7 @@ Deployed [live](https://clear-emitter-234416.firebaseapp.com/)!
 <p align="center">
   <img alt="PWA Walkthrough" src='https://user-images.githubusercontent.com/39765499/59162401-63a03400-8ae8-11e9-8359-589fa0c80c5b.gif'>
   <img alt="Screenshot" src='https://user-images.githubusercontent.com/39765499/59162404-76b30400-8ae8-11e9-9f12-e8473b83fccd.png'>
-  <img alt="Google Lighthouse Audit" src='https://user-images.githubusercontent.com/39765499/59162402-6864e800-8ae8-11e9-83f0-1a633d985122.png'>
+  <img width=400  alt="Google Lighthouse Audit" src='https://user-images.githubusercontent.com/39765499/59162402-6864e800-8ae8-11e9-83f0-1a633d985122.png'>
 </p>
 
 ### Features
@@ -36,12 +36,10 @@ Deployed [live](https://clear-emitter-234416.firebaseapp.com/)!
 
 ### How to Run
 ```
-$ git clone https://github.com/barclayd/Street-Fighter
-$ cd Street-Fighter
-$ npm install
-$ npm run serve
+$ git clone https://github.com/barclayd/Cookbook-PWA
+$ cd Cookbook-PWA/public
 ```
-Open [localhost:8080](http://localhost:8080/)
+Either run a local server to view PWA live with changes locally or open index.html in browser
 
 ### Future Improvements
 
