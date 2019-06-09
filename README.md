@@ -36,7 +36,7 @@ Deployed [live](https://clear-emitter-234416.firebaseapp.com/)!
 
 ### How to Run
 ```
-$ git clone https://github.com/barclayd/Cookbook-PWA
+$ git clone https://github.com/barclayd/Cookbook-PWA.git
 $ cd Cookbook-PWA/public
 ```
 Either run a local server to view PWA live with changes locally or open index.html in browser
