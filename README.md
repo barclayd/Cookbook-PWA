@@ -13,7 +13,7 @@ Deployed [live](https://clear-emitter-234416.firebaseapp.com/)!
 ### Demo
 
 <p align="center">
-  <img alt="PWA Walkthrough" src='https://user-images.githubusercontent.com/39765499/59162574-1bcedc00-8aeb-11e9-9d90-f844bee89db8.gif'>
+  <img width=300 alt="PWA Walkthrough" src='https://user-images.githubusercontent.com/39765499/59162574-1bcedc00-8aeb-11e9-9d90-f844bee89db8.gif'>
   <img alt="Screenshot" src='https://user-images.githubusercontent.com/39765499/59162404-76b30400-8ae8-11e9-9f12-e8473b83fccd.png'>
   <img width=400  alt="Google Lighthouse Audit" src='https://user-images.githubusercontent.com/39765499/59162402-6864e800-8ae8-11e9-83f0-1a633d985122.png'>
 </p>
