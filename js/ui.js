@@ -1,21 +1,21 @@
-const recipes = document.querySelector('.recipes');
+const recipes = document.querySelector(".recipes");
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // nav menu
-  const menus = document.querySelector('.side-menu');
+  const menus = document.querySelector(".side-menu");
   M.Sidenav.init(menus, {
-    edge: 'left',
+    edge: "left"
   });
   // recipe form
-  const forms = document.querySelector('.side-form');
+  const forms = document.querySelector(".side-form");
   M.Sidenav.init(forms, {
-    edge: 'right',
+    edge: "right"
   });
 });
 
 const renderRecipe = (data, id) => {
   const html = `
-  <div class="card-panel recipe white row" data-id=${id}>
+  <div class="card-panel recipe white row" data-id=${id} id=${id}>
             <img src="/img/dish.png" alt="recipe thumb">
             <div class="recipe-details">
                 <div class="recipe-title">${data.title}</div>
