@@ -22,17 +22,17 @@ Deployed [live](https://clear-emitter-234416.firebaseapp.com/)!
 
 - [x] Store and save recipes
 - [x] Remove recipes
+- [x] Add to home screen adn run locally for iOS and Android
 - [x] Full offline functionality
-- [x] Offline functionality synchronises with database as soon as next online to keep all data up to date and to reflect local changes
+- [x] Offline functionality synchronises with database with background sync, utilises Firebase and IndexedDB APIs
 - [x] Dynamic caching
 - [x] Fulfills all Google Lighthouse Audit requirements for an excellent, full-featured PWA
 - [x] Real time data allows new databases to be shown without refreshing
-- [x] Offline fallback pages
+- [x] Offline fallback pages for uncached/non-existent routes
 - [x] Controllable cache size
 - [x] Activity automatically updates on all devices running PWA
 - [x] Full manifest.json adjusted for full Android and iOS support
 - [x] Add to Home Screen banner 
-
 
 ### How to Run
 ```
