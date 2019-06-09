@@ -19,6 +19,7 @@ db.collection(collectionName).onSnapshot(snapshot => {
     }
     if (change.type === "removed") {
       // remove document data from web page
+      removeRecipe(change.doc.id);
     }
   });
 });
@@ -46,7 +47,6 @@ form.addEventListener("submit", async event => {
 
 const recipeContainer = document.querySelector(".recipes");
 recipeContainer.addEventListener("click", event => {
-  console.log(event);
   const { target } = event;
   if (target.tagName === "I") {
     const id = target.getAttribute("data-id");
