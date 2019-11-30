@@ -1,18 +1,44 @@
-const staticCacheName = 'site-static-v1';
-const dynamicCacheName = 'site-dynamic-v1';
+importScripts('https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.1.0/firebase-messaging.js');
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyBqznrHjn-JP1sSX91K53GOiIUpiKAxy-Y',
+  authDomain: 'clear-emitter-234416.firebaseapp.com',
+  databaseURL: 'https://clear-emitter-234416.firebaseio.com',
+  projectId: 'clear-emitter-234416',
+  storageBucket: 'clear-emitter-234416.appspot.com',
+  messagingSenderId: '455719057190',
+  appId: '1:455719057190:web:1974877d4cbe9253',
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const messaging = firebase.messaging();
+
+messaging.setBackgroundMessageHandler((notification) => {
+  const notificationTitle = notification.data.title;
+  const notificationOptions = {
+    body: notification.data.body,
+    icon: '/public/img/dish.png'
+  };
+  return self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+const staticCacheName = 'site-static-v3';
+const dynamicCacheName = 'site-dynamic-v3';
 
 const assets = [
-  '/',
-  '/js/app.js',
-  '/js/ui.js',
-  '/js/materialize.min.js',
-  '/css/materialize.min.css',
-  '/css/style.css',
-  '/img/dish.png',
-  '/index.html',
+  '/public',
+  '/public/js/app.js',
+  '/public/js/ui.js',
+  '/public/js/materialize.min.js',
+  '/public/css/materialize.min.css',
+  '/public/css/style.css',
+  '/public/img/dish.png',
+  '/public/index.html',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
-  '/pages/fallback.html',
+  '/public/pages/fallback.html',
 ];
 
 // cache size limiter
@@ -75,4 +101,9 @@ self.addEventListener('fetch', event => {
         }),
     );
   }
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  event.waitUntil(self.clients.openWindow(event.notification.data));
 });
