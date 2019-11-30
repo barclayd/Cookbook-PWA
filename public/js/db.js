@@ -1,5 +1,5 @@
 // offline functionality
-db.enablePersistence().catch(err => {
+db.enablePersistence().catch((err) => {
   console.log(err);
   if (err.code === 'failed.precondition') {
     console.log('persistent data failure');
@@ -10,9 +10,8 @@ db.enablePersistence().catch(err => {
 
 const collectionName = 'recipes';
 // real time listener
-db.collection(collectionName).onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    console.log(change, change.doc.data(), change.doc.id);
+db.collection(collectionName).onSnapshot((snapshot) => {
+  snapshot.docChanges().forEach((change) => {
     if (change.type === 'added') {
       // add document data to web page
       renderRecipe(change.doc.data(), change.doc.id);
@@ -27,7 +26,7 @@ db.collection(collectionName).onSnapshot(snapshot => {
 // add new recipe
 
 const form = document.querySelector('form');
-form.addEventListener('submit', async event => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const recipe = {
@@ -46,7 +45,7 @@ form.addEventListener('submit', async event => {
 // delete a recipe
 
 const recipeContainer = document.querySelector('.recipes');
-recipeContainer.addEventListener('click', event => {
+recipeContainer.addEventListener('click', (event) => {
   const { target } = event;
   if (target.tagName === 'I') {
     const id = target.getAttribute('data-id');

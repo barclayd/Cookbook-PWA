@@ -19,9 +19,13 @@ messaging.setBackgroundMessageHandler((notification) => {
   const notificationTitle = notification.data.title;
   const notificationOptions = {
     body: notification.data.body,
-    icon: '/public/img/dish.png'
+    icon: '/public/img/dish.png',
+    data: notification.data.link,
   };
-  return self.registration.showNotification(notificationTitle, notificationOptions);
+  return self.registration.showNotification(
+    notificationTitle,
+    notificationOptions,
+  );
 });
 
 const staticCacheName = 'site-static-v3';
@@ -43,8 +47,8 @@ const assets = [
 
 // cache size limiter
 const limitCacheSize = (name, size) => {
-  caches.open(name).then(cache => {
-    cache.keys().then(keys => {
+  caches.open(name).then((cache) => {
+    cache.keys().then((keys) => {
       if (keys.length > size) {
         cache.delete(keys[0]).then(limitCacheSize(name, size));
       }
@@ -53,39 +57,39 @@ const limitCacheSize = (name, size) => {
 };
 
 // listen to service worker install event
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   // cache shell of pwa
   event.waitUntil(
-    caches.open(staticCacheName).then(cache => {
+    caches.open(staticCacheName).then((cache) => {
       cache.addAll(assets);
     }),
   );
 });
 
 // activate service worker
-self.addEventListener('activate', async event => {
+self.addEventListener('activate', async (event) => {
   console.log('service worker has been activated');
   // delete old caches
   let keys;
   event.waitUntil(
     (keys = await caches.keys()),
     await keys
-      .filter(key => key !== staticCacheName && key !== dynamicCacheName)
-      .map(key => caches.delete(key)),
+      .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
+      .map((key) => caches.delete(key)),
   );
 });
 
 // fetch event
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.url.indexOf('firestore.googleappis.com') === -1) {
     event.respondWith(
       caches
         .match(request)
-        .then(cacheRes => {
+        .then((cacheRes) => {
           return (
             cacheRes ||
-            fetch(request).then(async fetchRes => {
+            fetch(request).then(async (fetchRes) => {
               const cache = await caches.open(dynamicCacheName);
               cache.put(request.url, fetchRes.clone());
               // check cached items size
@@ -103,7 +107,7 @@ self.addEventListener('fetch', event => {
   }
 });
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   event.waitUntil(self.clients.openWindow(event.notification.data));
 });
